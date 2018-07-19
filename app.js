@@ -12,6 +12,15 @@ function saveTask (e) {
 
      console.log(task);
      
-     
+    if(localStorage.getItem('task') === null) {
+        let tasks = [];
+        task.push(task);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    } else {
+        let tasks = JSON.parse(localStorage.getItem('tasks'));
+        tasks.push(task);
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+    }
+
     e.preventDefault();
 }
