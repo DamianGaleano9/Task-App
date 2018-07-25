@@ -5,22 +5,40 @@ function saveTask (e) {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
 
+
+
      const task = {
          title,
          description
      };
 
-     console.log(task);
-     
-    if(localStorage.getItem('task') === null) {
+
+
+
+   if(localStorage.getItem('tasks') === null) {
         let tasks = [];
-        task.push(task);
+        tasks.push(task);
         localStorage.setItem('tasks', JSON.stringify(tasks));
     } else {
         let tasks = JSON.parse(localStorage.getItem('tasks'));
         tasks.push(task);
-        localStorage.setItem('tasks', JSON.stringify(tasks))
+        localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
     e.preventDefault();
 }
+
+
+
+function getTasks () {
+       let tasks =  JSON.parse(localStorage.getItem('tasks'));
+       let tasksView=  document.getElementById('tasks');
+
+       tasksView.innerHTML = '';
+
+       for(let i = 0; i < tasks.length; i++) {
+            console.log(tasks[i]);
+       }
+    }
+
+    getTasks();
